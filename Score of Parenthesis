@@ -1,0 +1,18 @@
+class Solution:
+    def scoreOfParentheses(self, s: str) -> int:
+        score = idx = openb = 0
+        while idx < len(s): #in order to limit the index below the length of our string 
+            if s[idx] == "(" : #picks up an open bracket from the string
+                openb += 1  # if we find an open bracket we add one to our open bracket count
+                idx += 1 # we move on
+            else: 
+                score += 2 ** (openb - 1) # (()) we count this by multiplying and educing one from the numbe rof open brackets gives us the value asigned in the question
+                while idx < len(s) and s[idx] == ")": #this goes over the rest off the elements of our string which are closed brackets to the limit of the index of the string
+                    openb -= 1 # yhe open bracketun yatafalnal(yzegalnal)
+                    idx += 1 # we move on
+        return score # we return
+                
+    
+        
+        
+        

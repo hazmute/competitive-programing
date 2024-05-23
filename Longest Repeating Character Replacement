@@ -1,0 +1,20 @@
+class Solution:
+    def characterReplacement(self, s: str, k: int) -> int:
+        left = right = 0  # initializing left and right pointers
+        max_count = 0  # initializing count of the most frequent character
+        max_length = 0  # initializing maximum length of substring
+
+        counter = Counter()  # initializing counter for characters in the window
+        while right < len(s):
+            counter[s[right]] += 1
+            max_count = max(max_count, counter[s[right]])  # update max_count
+            # shrink the window if the number of replacements needed exceeds k
+            while right - left + 1 - max_count > k:
+                counter[s[left]] -= 1
+                left += 1
+            
+            max_length = max(max_length, right - left + 1)  # update max_length
+            
+            right += 1  # expands the window
+
+        return max_length  
